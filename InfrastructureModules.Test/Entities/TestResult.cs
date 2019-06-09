@@ -6,21 +6,25 @@ using System.Threading.Tasks;
 
 namespace InfrastructureModules.Test.Entities
 {
+    [Serializable]
     class TestResult
     {
-        public Type TestClass { get; set; }
+        public string TestClassName { get; set; }
         public int PassedCount { get; set; }
         public int FailedCount { get; set; }
         public List<MethodTestInfo> MethodTestInfoList { get; set; }
     }
 
+    [Serializable]
     class MethodTestInfo
     {
         public TestResultCode ResultCode { get; set; }
         public ExceptionInfo Exception { get; set; }
         public ExceptionInfo InnerException { get; set; }
+        public long Duration { get; set; }
     }
 
+    [Serializable]
     class ExceptionInfo
     {
         public string Message { get; set; }
@@ -29,7 +33,7 @@ namespace InfrastructureModules.Test.Entities
 
     enum TestResultCode
     {
-        SUCCESS = 1,
-        ERROR = 2
+        PASSED = 1,
+        FAILED = 2
     }
 }

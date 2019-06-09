@@ -16,14 +16,15 @@ namespace SampleLibrary.Test
         [InitMethod]
         public void Init()
         {
-            message = File.ReadAllText(string.Format("{0}\\Message.txt", AppDomain.CurrentDomain.BaseDirectory), Encoding.UTF8);
+            string messageFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\\..\\Test\Message.txt");
+            message = File.ReadAllText(messageFilePath, Encoding.UTF8);
         }
 
         [TestMethod]
         public void TestGettingNumber() {
             SampleLibrary.MessageParser parser = new SampleLibrary.MessageParser();
             Message result = parser.Parse(message);
-            Assert.Equals(result.Id, 1);
+            Assert.Equals(result.Id, 2);
         }
     }
 }

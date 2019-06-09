@@ -45,7 +45,10 @@
     <Compile Include="Attributes\InitMethod.cs" />
     <Compile Include="Attributes\TestClass.cs" />
     <Compile Include="Attributes\TestMethod.cs" />
+    <Compile Include="Configuration\AssemblyInfo.cs" />
+    <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Entities\Customer.cs" />
+    <Compile Include="Entities\DomainInfo.cs" />
     <Compile Include="Entities\HTMLGenerator.cs" />
     <Compile Include="Entities\TestInfo.cs" />
     <Compile Include="Entities\TestResult.cs" />

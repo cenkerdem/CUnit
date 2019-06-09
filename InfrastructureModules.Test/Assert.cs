@@ -16,5 +16,23 @@ namespace InfrastructureModules.Test
                 throw new AssertionException("ObjectsAreNotEqual", AssertionType.EqualityCheck, parameters);
             }
         }
+
+        public static void Equals(long first, long second)
+        {
+            if (!first.Equals(second))
+            {
+                List<object> parameters = new List<object>() { first, second };
+                throw new AssertionException("NumbersAreNotEqual", AssertionType.EqualityCheck, parameters);
+            }
+        }
+
+        public static void Equals(int first, int second)
+        {
+            if (!first.Equals(second))
+            {
+                List<object> parameters = new List<object>() { first, second };
+                throw new AssertionException("NumbersAreNotEqual", AssertionType.EqualityCheck, parameters);
+            }
+        }
     }
 }

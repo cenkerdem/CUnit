@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using InfrastructureModules.Utils;
 using InfrastructureModules.Test.Entities;
+using System.IO;
 
 namespace InfrastructureModules.Test
 {
@@ -12,8 +13,9 @@ namespace InfrastructureModules.Test
     {
         static void Main(string[] args)
         {
-            TestRunner testRunner = new TestRunner();
-            testRunner.Run();
+            TestManager testManager = new TestManager();
+            Dictionary<string, List<TestResult>> projectTestResults = testManager.Run();
+            string currentDirectory = Directory.GetCurrentDirectory();
             return;
 
             bool loopContinues = true;
