@@ -9,7 +9,7 @@ namespace InfrastructureModules.Test
     [Serializable]
     class AssemblyInfo
     {
-        public string AssemlyName { get; set; }
+        public string AssemblyName { get; set; }
         public string AssemblyFullPath { get; set; }
         public string Extension { get; set; }
         public string ProjectName { get; set; }

@@ -1,5 +1,7 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,20 +13,9 @@ namespace InfrastructureModules.Test
     {
         private List<AssemblyInfo> assemblies;
         public Configuration() {
-            assemblies = new List<AssemblyInfo>();
-            assemblies.Add(new AssemblyInfo() {
-                AssemlyName = "SampleLibrary",
-                Extension = "dll",
-                ProjectName = "SampleLibrary",
-                BinFolderPath = "bin\\debug"
-            });
-            assemblies.Add(new AssemblyInfo()
-            {
-                AssemlyName = "SampleLibrary2",
-                Extension = "dll",
-                ProjectName = "SampleLibrary2",
-                BinFolderPath = "bin\\debug"
-            });
+            string testProjectsJson = File.ReadAllText(string.Format(@"{0}\..\..\TestProjects.json", Directory.GetCurrentDirectory()));
+            TestProjectConfig testProjectConfig = JsonConvert.DeserializeObject<TestProjectConfig>(testProjectsJson);
+            assemblies = testProjectConfig.Projects;
         }
 
         public List<AssemblyInfo> GetAssemblies()

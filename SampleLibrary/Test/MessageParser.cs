@@ -7,6 +7,7 @@ using InfrastructureModules.Test.Attributes;
 using System.IO;
 using InfrastructureModules.Test;
 using InfrastructureModules.Test.Utils;
+using System.Threading;
 
 namespace SampleLibrary.Test
 {
@@ -26,6 +27,7 @@ namespace SampleLibrary.Test
         public void TestGettingNumber() {
             SampleLibrary.MessageParser parser = new SampleLibrary.MessageParser();
             Message result = parser.Parse(message);
+            Thread.Sleep(500);
             Assert.Equals(result.Id, 2);
         }
     }

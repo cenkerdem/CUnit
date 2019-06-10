@@ -28,8 +28,6 @@ namespace InfrastructureModules.Test
 
         private void AnalyzeTestMethods(DomainInfo domainInfo)
         {
-            //AAA KALDIĞIM YER: ASSEMBLY ISMINI BURAYA GONDERIP, SADECE O ASSEMBLY'LERE BAKMAM GEREKIYOR!
-            //Type[] types = appDomain.GetAssemblies()[0].GetTypes();
             Assembly[] assemblies = AppDomain.CurrentDomain.GetAssemblies();
             domainInfo.TestClasses = new Dictionary<Type, TestInfo>();
             foreach (Assembly assembly in assemblies)
@@ -38,7 +36,7 @@ namespace InfrastructureModules.Test
                 bool isTestAssembly = false;
                 foreach (AssemblyInfo testAssembly in domainInfo.Assemblies)
                 {
-                    string testAssemblyName = testAssembly.AssemlyName;
+                    string testAssemblyName = testAssembly.AssemblyName;
                     if (assemblyName.Equals(testAssemblyName))
                     {
                         isTestAssembly = true;
@@ -52,9 +50,6 @@ namespace InfrastructureModules.Test
                 }
 
                 Type[] types = assembly.GetTypes();
-
-                //Type[] types = this.GetType().Assembly.GetTypes();
-                //Type[] types = assembly.GetTypes();
 
                 foreach (Type type in types)
                 {
@@ -128,6 +123,11 @@ namespace InfrastructureModules.Test
                 {
                     MethodTestInfo methodTestInfo = RunMethod(testInstance, testInfo.InitMethod);
                     result.MethodTestInfoList.Add(methodTestInfo);
+                    if (methodTestInfo.ResultCode == TestResultCode.FAILED)
+                    {
+                        //If init method fails, initial state may not be ready for test methods.
+                        continue;
+                    }
                 }
 
                 foreach (MethodInfo method in testInfo.TestMethods)

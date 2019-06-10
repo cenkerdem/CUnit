@@ -30,7 +30,7 @@ namespace InfrastructureModules.Test
                     AppDomain newDomain = AppDomain.CreateDomain(assemblyInfo.ProjectName, adEvidence, appDomainSetup);
                     Type type = typeof(AssemblyLoader);
                     AssemblyLoader assemblyLoader = (AssemblyLoader)newDomain.CreateInstanceAndUnwrap(type.Assembly.FullName, type.FullName);
-                    assemblyLoader.LoadAssembly(string.Format("{0}\\{1}.{2}", assemblyInfo.AssemblyFullPath, assemblyInfo.AssemlyName, assemblyInfo.Extension));
+                    assemblyLoader.LoadAssembly(string.Format("{0}\\{1}.{2}", assemblyInfo.AssemblyFullPath, assemblyInfo.AssemblyName, assemblyInfo.Extension));
 
                     DomainInfo domainInfo = new DomainInfo()
                     {

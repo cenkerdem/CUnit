@@ -1,0 +1,16 @@
+﻿{
+    "Projects": [
+        {
+            "ProjectName": "SampleLibrary",
+            "AssemblyName": "SampleLibrary",
+            "Extension": "dll",
+            "BinFolderPath": "bin/debug"
+        },
+        { 
+            "ProjectName": "SampleLibrary2",
+            "AssemblyName": "SampleLibrary2",
+            "Extension": "dll",
+            "BinFolderPath": "bin/debug"
+        }
+    ]
+}

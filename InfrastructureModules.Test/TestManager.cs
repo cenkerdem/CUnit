@@ -1,5 +1,6 @@
 ﻿using InfrastructureModules.Test.Entities;
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -13,15 +14,16 @@ namespace InfrastructureModules.Test
         {
             DomainManager domainManager = new DomainManager();
             Dictionary<string, DomainInfo> projectMap = domainManager.PrepareAppDomains();
-            Dictionary<string, List<ClassTestResult>> projectTestResults = new Dictionary<string, List<ClassTestResult>>();
-            Parallel.ForEach(projectMap, (projectInfo) => {
+            ConcurrentDictionary<string, List<ClassTestResult>> projectTestResults = new ConcurrentDictionary<string, List<ClassTestResult>>();
+            Parallel.ForEach(projectMap, (projectInfo) =>
+            {
                 DomainInfo domainInfo = projectInfo.Value;
                 AppDomain domain = domainInfo.AppDomain;
                 Type testRunnerType = typeof(TestRunner);
                 TestRunner testRunner = (TestRunner)domain.CreateInstanceAndUnwrap(testRunnerType.Assembly.FullName, testRunnerType.FullName);
 
                 List<ClassTestResult> testResults = testRunner.Run(domainInfo);
-                projectTestResults.Add(projectInfo.Key, testResults);
+                projectTestResults.TryAdd(projectInfo.Key, testResults);
                 AppDomain.Unload(domain);
             });
             //foreach (var pair in projectMap)
@@ -31,12 +33,12 @@ namespace InfrastructureModules.Test
             //    Type testRunnerType = typeof(TestRunner);
             //    TestRunner testRunner = (TestRunner)domain.CreateInstanceAndUnwrap(testRunnerType.Assembly.FullName, testRunnerType.FullName);
 
-            //    List<TestResult> testResults = testRunner.Run(domainInfo);
-            //    projectTestResults.Add(pair.Key, testResults);
+            //    List<ClassTestResult> testResults = testRunner.Run(domainInfo);
+            //    projectTestResults.TryAdd(pair.Key, testResults);
             //    AppDomain.Unload(domain);
             //}
 
-            return projectTestResults;
+            return projectTestResults.ToDictionary(x => x.Key, x => x.Value);
         }
     }
 }

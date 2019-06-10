@@ -4,10 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureModules.Test
+namespace MathLibrary
 {
-    interface ITest
+    public class Class1
     {
-        void Init();
     }
 }

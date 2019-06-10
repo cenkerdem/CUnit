@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace SampleLibrary2
+namespace InfrastructureModules.Test
 {
-    public class Class1
+    class TestProjectConfig
     {
+        public List<AssemblyInfo> Projects { get; set; }
     }
 }
