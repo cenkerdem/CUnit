@@ -3,8 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InfrastructureModules", "InfrastructureModules\InfrastructureModules.csproj", "{740841D4-5E64-48AE-B48C-23D91D6B6F60}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CUnit", "CUnit\CUnit.csproj", "{6F5ABCD6-4205-45E1-A5C3-E451AEFB7067}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SampleLibrary", "SampleLibrary\SampleLibrary.csproj", "{5ED26B60-9456-4FB0-9C0B-73C7135D0A60}"
@@ -19,10 +17,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{740841D4-5E64-48AE-B48C-23D91D6B6F60}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{740841D4-5E64-48AE-B48C-23D91D6B6F60}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{740841D4-5E64-48AE-B48C-23D91D6B6F60}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{740841D4-5E64-48AE-B48C-23D91D6B6F60}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6F5ABCD6-4205-45E1-A5C3-E451AEFB7067}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6F5ABCD6-4205-45E1-A5C3-E451AEFB7067}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6F5ABCD6-4205-45E1-A5C3-E451AEFB7067}.Release|Any CPU.ActiveCfg = Release|Any CPU
