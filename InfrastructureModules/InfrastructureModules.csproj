@@ -49,7 +49,7 @@
     <Compile Include="Utils\SingletonProvider.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InfrastructureModules.Test\CUnit.csproj">
+    <ProjectReference Include="..\CUnit\CUnit.csproj">
       <Project>{6f5abcd6-4205-45e1-a5c3-e451aefb7067}</Project>
       <Name>CUnit</Name>
     </ProjectReference>
