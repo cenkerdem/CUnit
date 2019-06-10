@@ -41,12 +41,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AssemblyLoader.cs" />
     <Compile Include="Assert.cs" />
     <Compile Include="Attributes\InitMethod.cs" />
     <Compile Include="Attributes\TestClass.cs" />
     <Compile Include="Attributes\TestMethod.cs" />
     <Compile Include="Configuration\AssemblyInfo.cs" />
     <Compile Include="Configuration\Configuration.cs" />
+    <Compile Include="Constants.cs" />
+    <Compile Include="DomainManager.cs" />
     <Compile Include="Entities\Customer.cs" />
     <Compile Include="Entities\DomainInfo.cs" />
     <Compile Include="Entities\HTMLGenerator.cs" />
@@ -58,7 +61,9 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SingletonProvider.cs" />
+    <Compile Include="TestManager.cs" />
     <Compile Include="TestRunner.cs" />
+    <Compile Include="Utils\PathUtils.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

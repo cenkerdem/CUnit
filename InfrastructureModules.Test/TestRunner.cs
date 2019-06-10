@@ -14,100 +14,13 @@ using System.Threading.Tasks;
 
 namespace InfrastructureModules.Test
 {
-    class TestManager
-    {   
-        public Dictionary<string, List<TestResult>> Run()
-        {
-            DomainManager domainManager = new DomainManager();
-            Dictionary<string, DomainInfo> projectMap = domainManager.PrepareAppDomains();
-            Dictionary<string, List<TestResult>> projectTestResults = new Dictionary<string, List<TestResult>>();
-            foreach (var pair in projectMap)
-            {
-                DomainInfo domainInfo = pair.Value;
-                AppDomain domain = domainInfo.AppDomain;
-                Type testRunnerType = typeof(TestRunner);
-                TestRunner testRunner = (TestRunner)domain.CreateInstanceAndUnwrap(testRunnerType.Assembly.FullName, testRunnerType.FullName);
-
-                List<TestResult> testResults = testRunner.Run(domainInfo);
-                projectTestResults.Add(pair.Key, testResults);
-                AppDomain.Unload(domain);
-            }
-
-            return projectTestResults;
-        }
-    }
-
-    class DomainManager
-    {
-        public Dictionary<string, DomainInfo> PrepareAppDomains()
-        {
-            Dictionary<string, DomainInfo> domainMap = new Dictionary<string, DomainInfo>();
-            List<AssemblyInfo> assemblies = Utils.SingletonProvider<Configuration>.Instance.GetAssemblies();
-            foreach (AssemblyInfo assemblyInfo in assemblies)
-            {
-                if (!domainMap.ContainsKey(assemblyInfo.ProjectName))
-                {
-                    assemblyInfo.AssemblyFullPath = CalculateAssemblyFullPath(assemblyInfo);
-                    AppDomainSetup appDomainSetup = new AppDomainSetup()
-                    {
-                        ApplicationBase = System.Environment.CurrentDirectory,
-                        PrivateBinPath = assemblyInfo.AssemblyFullPath
-                    };
-                    Evidence adEvidence = AppDomain.CurrentDomain.Evidence;
-                    AppDomain newDomain = AppDomain.CreateDomain(assemblyInfo.ProjectName, adEvidence, appDomainSetup);
-                    Type type = typeof(AssemblyLoader);
-                    AssemblyLoader assemblyLoader = (AssemblyLoader)newDomain.CreateInstanceAndUnwrap(type.Assembly.FullName, type.FullName);
-                    assemblyLoader.LoadAssembly(string.Format("{0}\\{1}.{2}", assemblyInfo.AssemblyFullPath, assemblyInfo.AssemlyName, assemblyInfo.Extension));
-
-                    DomainInfo domainInfo = new DomainInfo()
-                    {
-                        AppDomain = newDomain,
-                        Assemblies = new List<AssemblyInfo>()
-                    };
-
-                    domainMap.Add(assemblyInfo.ProjectName, domainInfo);
-                }
-
-                domainMap[assemblyInfo.ProjectName].Assemblies.Add(assemblyInfo);
-
-                //newDomain.Load(AssemblyName.GetAssemblyName(string.Format("{0}\\{1}", assemblyFullPath, assemblyInfo.AssemlyName)));
-                //Assembly assembly = Assembly.LoadFrom(string.Format("{0}\\{1}", assemblyFullPath, assemblyInfo.AssemlyName));
-            }
-
-            return domainMap;
-        }
-
-        private string CalculateAssemblyFullPath(AssemblyInfo assemblyInfo)
-        {
-            string projectFolderPath = string.IsNullOrWhiteSpace(assemblyInfo.ProjectFolderPath) ? string.Format("{0}{1}", Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory(), @"..\..\..\")), assemblyInfo.ProjectName) : assemblyInfo.ProjectFolderPath;
-
-            string assemblyFullPath = string.Format(@"{0}\{1}", projectFolderPath, assemblyInfo.BinFolderPath);
-            return assemblyFullPath;
-        }
-    }
-
-    public class AssemblyLoader : MarshalByRefObject
-    {
-        public void LoadAssembly(string assemblyPath)
-        {
-            try
-            {
-                Assembly.LoadFrom(assemblyPath);
-            }
-            catch (Exception)
-            {
-                throw;
-            }
-        }
-    }
-
     class TestRunner : MarshalByRefObject
     {
         public TestRunner()
         {
         }
 
-        public List<TestResult> Run(DomainInfo domainInfo)
+        public List<ClassTestResult> Run(DomainInfo domainInfo)
         {
             AnalyzeTestMethods(domainInfo);
             return Execute(domainInfo);
@@ -185,19 +98,19 @@ namespace InfrastructureModules.Test
             
         }
 
-        private List<TestResult> Execute(DomainInfo domainInfo)
+        private List<ClassTestResult> Execute(DomainInfo domainInfo)
         {
             if (domainInfo == null || domainInfo.TestClasses == null || domainInfo.TestClasses.Count == 0)
             {
                 return null;
             }
 
-            List<TestResult> results = new List<TestResult>();
+            List<ClassTestResult> results = new List<ClassTestResult>();
 
             foreach (KeyValuePair<Type, TestInfo> pair in domainInfo.TestClasses)
             {
                 Type testClassType = pair.Key;
-                TestResult result = new TestResult()
+                ClassTestResult result = new ClassTestResult()
                 {
                     TestClassName = testClassType.Name,
                     MethodTestInfoList = new List<MethodTestInfo>()
@@ -205,7 +118,8 @@ namespace InfrastructureModules.Test
 
                 string assemblyLocation = testClassType.Assembly.Location;
                 string directoryPath = assemblyLocation.Substring(0, assemblyLocation.LastIndexOf("\\"));
-                Directory.SetCurrentDirectory(directoryPath);
+                domainInfo.AppDomain.SetData(Constants.AppDomainBasePath, directoryPath);
+                //Directory.SetCurrentDirectory(directoryPath);
 
                 var testInstance = Activator.CreateInstance(testClassType);
 
@@ -232,6 +146,8 @@ namespace InfrastructureModules.Test
         {
             MethodTestInfo methodTestInfo = new MethodTestInfo()
             {
+                MethodName = method.Name,
+                MethodNamespace = method.Module.FullyQualifiedName,
                 ResultCode = TestResultCode.PASSED
             };
 

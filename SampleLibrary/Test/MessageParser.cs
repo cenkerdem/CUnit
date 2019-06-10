@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using InfrastructureModules.Test.Attributes;
 using System.IO;
 using InfrastructureModules.Test;
+using InfrastructureModules.Test.Utils;
 
 namespace SampleLibrary.Test
 {
@@ -16,7 +17,8 @@ namespace SampleLibrary.Test
         [InitMethod]
         public void Init()
         {
-            string messageFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\\..\\Test\Message.txt");
+            //string messageFilePath = Path.Combine(Directory.GetCurrentDirectory(), @"..\\..\\Test\Message.txt");
+            string messageFilePath = Path.Combine(PathUtils.GetCurrentDirectory(), @"..\\..\\Test\Message.txt");
             message = File.ReadAllText(messageFilePath, Encoding.UTF8);
         }
 

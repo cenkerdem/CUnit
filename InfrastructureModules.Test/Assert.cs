@@ -13,7 +13,7 @@ namespace InfrastructureModules.Test
             if (!first.Equals(second))
             {
                 List<object> parameters = new List<object>() { first, second };
-                throw new AssertionException("ObjectsAreNotEqual", AssertionType.EqualityCheck, parameters);
+                throw new AssertionException("Objects Are Not Equal", AssertionType.EqualityCheck, parameters);
             }
         }
 
@@ -22,7 +22,7 @@ namespace InfrastructureModules.Test
             if (!first.Equals(second))
             {
                 List<object> parameters = new List<object>() { first, second };
-                throw new AssertionException("NumbersAreNotEqual", AssertionType.EqualityCheck, parameters);
+                throw new AssertionException(string.Format("Numbers Are Not Equal. Values: {0}, {1}", first, second), AssertionType.EqualityCheck, parameters);
             }
         }
 
@@ -31,7 +31,7 @@ namespace InfrastructureModules.Test
             if (!first.Equals(second))
             {
                 List<object> parameters = new List<object>() { first, second };
-                throw new AssertionException("NumbersAreNotEqual", AssertionType.EqualityCheck, parameters);
+                throw new AssertionException(string.Format("Numbers Are Not Equal. Values: {0}, {1}", first, second), AssertionType.EqualityCheck, parameters);
             }
         }
     }

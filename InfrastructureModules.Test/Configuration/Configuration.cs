@@ -18,6 +18,13 @@ namespace InfrastructureModules.Test
                 ProjectName = "SampleLibrary",
                 BinFolderPath = "bin\\debug"
             });
+            assemblies.Add(new AssemblyInfo()
+            {
+                AssemlyName = "SampleLibrary2",
+                Extension = "dll",
+                ProjectName = "SampleLibrary2",
+                BinFolderPath = "bin\\debug"
+            });
         }
 
         public List<AssemblyInfo> GetAssemblies()

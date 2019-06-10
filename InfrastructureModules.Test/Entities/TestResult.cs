@@ -7,7 +7,14 @@ using System.Threading.Tasks;
 namespace InfrastructureModules.Test.Entities
 {
     [Serializable]
-    class TestResult
+    class AssemblyTestResult
+    {
+        public string AssemblyName { get; set; }
+        public List<ClassTestResult> ClassTestResults { get; set; }
+    }
+
+    [Serializable]
+    class ClassTestResult
     {
         public string TestClassName { get; set; }
         public int PassedCount { get; set; }
@@ -18,6 +25,8 @@ namespace InfrastructureModules.Test.Entities
     [Serializable]
     class MethodTestInfo
     {
+        public string MethodName { get; set; }
+        public string MethodNamespace { get; set; }
         public TestResultCode ResultCode { get; set; }
         public ExceptionInfo Exception { get; set; }
         public ExceptionInfo InnerException { get; set; }
