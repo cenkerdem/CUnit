@@ -1,5 +1,6 @@
-﻿using InfrastructureModules.Test.Attributes;
-using InfrastructureModules.Test.Entities;
+﻿using CUnit;
+using CUnit.Attributes;
+using CUnit.Entities;
 using InfrastructureModules.Utils;
 using System;
 using System.Collections.Generic;

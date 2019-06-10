@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureModules.Test.Entities
+namespace CUnit.Entities
 {
     [Serializable]
     class AssemblyTestResult

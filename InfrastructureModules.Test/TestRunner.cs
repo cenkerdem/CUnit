@@ -1,6 +1,6 @@
-﻿using InfrastructureModules.Test.Attributes;
-using InfrastructureModules.Test.Entities;
-using InfrastructureModules.Test.Exceptions;
+﻿using CUnit.Attributes;
+using CUnit.Entities;
+using CUnit.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -12,7 +12,7 @@ using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureModules.Test
+namespace CUnit
 {
     class TestRunner : MarshalByRefObject
     {

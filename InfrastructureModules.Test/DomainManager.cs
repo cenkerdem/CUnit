@@ -1,4 +1,4 @@
-﻿using InfrastructureModules.Test.Entities;
+﻿using CUnit.Entities;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -6,16 +6,16 @@ using System.Linq;
 using System.Security.Policy;
 using System.Text;
 using System.Threading.Tasks;
-using InfrastructureUtils = InfrastructureModules.Utils;
+using CUnit.Utils;
 
-namespace InfrastructureModules.Test
+namespace CUnit
 {
     class DomainManager
     {
         public Dictionary<string, DomainInfo> PrepareAppDomains()
         {
             Dictionary<string, DomainInfo> domainMap = new Dictionary<string, DomainInfo>();
-            List<AssemblyInfo> assemblies = InfrastructureUtils.SingletonProvider<Configuration>.Instance.GetAssemblies();
+            List<AssemblyInfo> assemblies = SingletonProvider<Configuration>.Instance.GetAssemblies();
             foreach (AssemblyInfo assemblyInfo in assemblies)
             {
                 if (!domainMap.ContainsKey(assemblyInfo.ProjectName))

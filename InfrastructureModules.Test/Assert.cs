@@ -1,11 +1,11 @@
-﻿using InfrastructureModules.Test.Exceptions;
+﻿using CUnit.Exceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureModules.Test
+namespace CUnit
 {
     public static class Assert
     {

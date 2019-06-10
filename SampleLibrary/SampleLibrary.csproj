@@ -45,9 +45,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\InfrastructureModules.Test\InfrastructureModules.Test.csproj">
+    <ProjectReference Include="..\InfrastructureModules.Test\CUnit.csproj">
       <Project>{6f5abcd6-4205-45e1-a5c3-e451aefb7067}</Project>
-      <Name>InfrastructureModules.Test</Name>
+      <Name>CUnit</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

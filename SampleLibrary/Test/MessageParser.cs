@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using InfrastructureModules.Test.Attributes;
+using CUnit.Attributes;
 using System.IO;
-using InfrastructureModules.Test;
-using InfrastructureModules.Test.Utils;
+using CUnit;
+using CUnit.Utils;
 using System.Threading;
 
 namespace SampleLibrary.Test

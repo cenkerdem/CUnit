@@ -43,7 +43,16 @@
     <Compile Include="Authentication\AuthenticatorFactory.cs" />
     <Compile Include="Class1.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\Customer.cs" />
+    <Compile Include="Test\HTMLGenerator.cs" />
+    <Compile Include="Test\SingletonProvider.cs" />
     <Compile Include="Utils\SingletonProvider.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\InfrastructureModules.Test\CUnit.csproj">
+      <Project>{6f5abcd6-4205-45e1-a5c3-e451aefb7067}</Project>
+      <Name>CUnit</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

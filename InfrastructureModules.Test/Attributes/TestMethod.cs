@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace InfrastructureModules.Test.Attributes
+namespace CUnit.Attributes
 {
     [AttributeUsage(AttributeTargets.Method)]
     public class TestMethod : Attribute
