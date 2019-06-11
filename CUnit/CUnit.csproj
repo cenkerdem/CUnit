@@ -45,16 +45,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AssemblyLoader.cs" />
-    <Compile Include="Assert.cs" />
+    <Compile Include="Core\AssemblyLoader.cs" />
+    <Compile Include="Core\Assert.cs" />
     <Compile Include="Attributes\InitMethod.cs" />
     <Compile Include="Attributes\TestClass.cs" />
     <Compile Include="Attributes\TestMethod.cs" />
     <Compile Include="Configuration\AssemblyInfo.cs" />
     <Compile Include="Configuration\Configuration.cs" />
     <Compile Include="Configuration\TestProjectConfig.cs" />
-    <Compile Include="Constants.cs" />
-    <Compile Include="DomainManager.cs" />
+    <Compile Include="Core\Constants.cs" />
+    <Compile Include="Core\DomainManager.cs" />
     <Compile Include="Entities\DomainInfo.cs" />
     <Compile Include="Entities\TestInfo.cs" />
     <Compile Include="Entities\TestResult.cs" />
@@ -62,8 +62,8 @@
     <Compile Include="Exceptions\AssertionType.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestManager.cs" />
-    <Compile Include="TestRunner.cs" />
+    <Compile Include="Core\TestManager.cs" />
+    <Compile Include="Core\TestRunner.cs" />
     <Compile Include="Utils\PathUtils.cs" />
     <Compile Include="Utils\SingletonProvider.cs" />
   </ItemGroup>

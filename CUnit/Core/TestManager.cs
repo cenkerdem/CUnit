@@ -26,17 +26,6 @@ namespace CUnit
                 projectTestResults.TryAdd(projectInfo.Key, testResults);
                 AppDomain.Unload(domain);
             });
-            //foreach (var pair in projectMap)
-            //{
-            //    DomainInfo domainInfo = pair.Value;
-            //    AppDomain domain = domainInfo.AppDomain;
-            //    Type testRunnerType = typeof(TestRunner);
-            //    TestRunner testRunner = (TestRunner)domain.CreateInstanceAndUnwrap(testRunnerType.Assembly.FullName, testRunnerType.FullName);
-
-            //    List<ClassTestResult> testResults = testRunner.Run(domainInfo);
-            //    projectTestResults.TryAdd(pair.Key, testResults);
-            //    AppDomain.Unload(domain);
-            //}
 
             return projectTestResults.ToDictionary(x => x.Key, x => x.Value);
         }
