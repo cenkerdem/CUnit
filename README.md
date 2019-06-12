@@ -3,7 +3,7 @@ CUnit is a unit testing framework for .NET projects. <br/>
 It executes the registered projects on a central process. <br/>
 CUnit.exe console application processes and shows the results.
 # Usage
-Projects that will be tested must add reference to CUnit library. <br/>
+Projects that will be tested must add CUnit library as reference. <br/>
 The classes that will be tested must have TestClass attribute. <br/>
 If there is an initial preperation method, it will be executed firstly by adding Init attribute. <br/>
 Test methods must have TestMethod attribute. <br/>
