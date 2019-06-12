@@ -1,5 +1,5 @@
 # CUnit
-CUnit is a custom unit testing framework for .NET projects. <br/>
+CUnit is a unit testing framework for .NET projects. <br/>
 It executes the registered projects on a central process. <br/>
 CUnit.exe console application processes and shows the results.
 # Usage
